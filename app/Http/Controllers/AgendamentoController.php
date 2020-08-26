@@ -35,6 +35,7 @@ class AgendamentoController extends Controller
         $agendamento->color = "#93ec54";
         $agendamento->barbeiro = $barbeiro;
         $agendamento->servico = $servico;
+        $agendamento->status = "agendado";
         $agendamento->save();
 
         return redirect('/agendamento')->with('message', 'Agendamento Realizado');
@@ -48,13 +49,27 @@ class AgendamentoController extends Controller
         $acao = $request->input('acao');
         
         if($acao == "atender"){
-            $fazer = "atender";
-    return  $fazer;
+            $NewStatus = "em atendimento";
+            $NewColor = "#fff80f";
+            $idEvent = $request->input('id');
+            $updateEvent = DB::table('events')->where('Id', $idEvent)->update(['status' => $NewStatus, 'color' => $NewColor]);
+            return redirect('/listagendamento')->with('message', 'Agendamento Alterado');
+            
 
         }else if($acao == "cancelar"){
-            $fazer2 = "cancelar";
-        return $fazer2;
+            $NewStatus = "cancelado";
+            $NewColor = "#ed0707";
+            $idEvent = $request->input('id');
+            $updateEvent = DB::table('events')->where('Id', $idEvent)->update(['status' => $NewStatus, 'color' => $NewColor]);
+            return redirect('/listagendamento')->with('message', 'Agendamento Alterado');
+            
         
+        }else if($acao == "finalizar"){
+            $NewStatus = "finalizado";
+            $NewColor = "#000000";
+            $idEvent = $request->input('id');
+            $updateEvent = DB::table('events')->where('Id', $idEvent)->update(['status' => $NewStatus, 'color' => $NewColor]);
+            return redirect('/listagendamento')->with('message', 'Agendamento Alterado');
         }
         
         $idEvent = $request->input('id');
@@ -63,10 +78,11 @@ class AgendamentoController extends Controller
         $dataFim = $request->input('data-fim');
         $barbeiro = $request->input('barbeiro');
         $servico = $request->input('servico');
+        $status = $request->input('status');
         $dtInit = Carbon::create($dataInit);
         $dtFim = Carbon::create($dataFim);
 
-       $updateEvent = DB::table('events')->where('Id', $idEvent)->update(['start' => $dtInit, 'end' => $dtFim, 'barbeiro' => $barbeiro, 'servico' => $servico]);
+       $updateEvent = DB::table('events')->where('Id', $idEvent)->update(['start' => $dtInit, 'end' => $dtFim, 'barbeiro' => $barbeiro, 'servico' => $servico, 'status' => $status]);
     
         return redirect('/listagendamento')->with('message', 'Agendamento Alterado');
 

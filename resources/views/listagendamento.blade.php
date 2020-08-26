@@ -47,6 +47,7 @@
           <label for="cliente" class="col-form-label">Cliente</label>
             <input type="text" name="cliente" class="form-control" id=cliente disabled>
             <input type="text" name="id" hidden>
+            <input type="text" name="status" hidden>
             <label for="data-init" class="col-form-label">Data/Hora | Inicial</label>
             <input type="datetime-local" class="form-control" id="data-init" name="data-init">
             <label for="data-fim" class="col-form-label">Data/Hora | Final </label>
@@ -69,14 +70,24 @@
         <form action="/listagendamento" method="post">
         {{ csrf_field() }}
         <input type="text" name="acao" id="acao" value="cancelar" hidden>
-        <button type="submit" id="Cancelar" class="btn btn-danger">Cancelar</button>
+        <input type="text" name="id" hidden>
+        <button type="submit" id="cancelar" class="btn btn-danger">Cancelar</button>
         </form>
         </div>
           <div> 
         <form action="/listagendamento" method="post">
         {{ csrf_field() }}
         <input type="text" name="acao" id="acao" value="atender" hidden>
+        <input type="text" name="id" hidden>
         <button type="submit" id="abrir" class="btn btn-primary">Atender</button>
+        </form>
+        </div>
+        <div> 
+        <form action="/listagendamento" method="post">
+        {{ csrf_field() }}
+        <input type="text" name="acao" id="acao" value="finalizar" hidden>
+        <input type="text" name="id" hidden>
+        <button type="submit" id="finalizar" class="btn btn-primary">finalizar</button>
         </form>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -104,7 +115,7 @@
     </div>
 </div>
 <script>
-
+// habilitar os campos para edição 
   function habilitarCampos(){
   document.getElementById("data-init").removeAttribute('disabled', 'disabled'); // Habilitar
   document.getElementById("data-fim").removeAttribute('disabled', 'disabled'); // Habilitar
@@ -113,6 +124,7 @@
   document.getElementById("salvar").removeAttribute('disabled', 'disabled'); // 
   document.getElementById("editar").setAttribute('disabled', 'disabled'); // Habilitar
 }
+//Resetar os campos para as posições originais
   function resetBot(){
     document.getElementById("cliente").setAttribute('disabled', 'disabled'); // Habilitar
     document.getElementById("data-init").setAttribute('disabled', 'disabled'); // Habilitar
@@ -123,6 +135,7 @@
     document.getElementById("editar").removeAttribute('disabled', 'disabled'); // Habilitar
   }
  
+
  
 </script>
 

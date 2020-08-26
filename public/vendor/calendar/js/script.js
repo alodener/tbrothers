@@ -8,8 +8,9 @@ $(function (){
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		}
     });
-    
-    $(".saveEvent").click(function(){
+
+	//VerificaStatus(status);
+   /* $(".saveEvent").click(function(){
         let id = $("#modalCalendar input[name='id']").val();
 
         let cliente = $("#modalCalendar input[name='cliente']").val();
@@ -38,7 +39,7 @@ $(function (){
 console.log(Event);
 sendEvent(route,Event);
 
-    });
+    });*/
 });
 
 function sendEvent(route, data_, method_){
@@ -65,8 +66,27 @@ function sendEvent(route, data_, method_){
 function routeEvents(route){
     return document.getElementById('calendar').dataset[route];
 }
+function VerificaStatus(status){
+
+    if(status == "em atendimento"){
+	 $("#modalCalendar button[id='abrir']").hide();
+	 $("#modalCalendar button[id='finalizar']").show();
+	 $("#modalCalendar button[id='cancelar']").hide();
+	}else if(status == "agendado"){
+		$("#modalCalendar button[id='abrir']").show();
+		$("#modalCalendar button[id='cancelar']").show();
+		$("#modalCalendar button[id='finalizar']").hide();
+
+	}else{
+		$("#modalCalendar button[id='abrir']").hide();
+		$("#modalCalendar button[id='finalizar']").hide();
+		$("#modalCalendar button[id='cancelar']").hide();
+	}
+  }
 
 function resetForm(form){
 	$(form)[0].reset();
 	resetBot();
+
+
 }

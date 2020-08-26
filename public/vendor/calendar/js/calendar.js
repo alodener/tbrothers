@@ -54,9 +54,12 @@
         $("#modalCalendar").modal("show");
         $("#modalCalendar #titleModal").text("Detalhes Agendamento");
         $("#modalCalendar button.deletEvent").css("display","flex");
+        
         resetForm("#agendamentoForm");
+  
         let id = event.event.extendedProps.Id;
         $("#modalCalendar input[name='id']").val(id);
+
 
         let title = event.event.title;
         $("#modalCalendar input[name='cliente']").val(title);
@@ -72,7 +75,10 @@
         $("#modalCalendar input[name='barbeiro']").val(barbeiro);
         let servico = event.event.extendedProps.servico;
         $("#modalCalendar input[name='servico']").val(servico);
-        
+ 
+        let status = event.event.extendedProps.status;
+        $("#modalCalendar input[name='status']").val(status);
+        VerificaStatus(status);
       },
       events:routeEvents('routeLoadEvents'),
     });
