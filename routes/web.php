@@ -27,6 +27,10 @@ Route::get('/home', function() {
 Route::get('/agendamento', 'AgendamentoController@iniciar')->name('agendamento');
 Route::get('/listagendamento', function () { return view('listagendamento');});
 Route::get('/load-events','EventController@loadEvents')->name('routeLoadEvents');
+Route::get('/historicoadm', 'HistoricoAdmController@iniciar')->name('historicoAdm');
+Route::get('/agendamentocliente', 'AgendamentoController@agendamentoCliente')->name('agendamentoCliente');
+Route::get('/historicocliente', 'AgendamentoController@historicoCliente')->name('historicocliente');
+Route::get('painel', 'PainelController@agendamentoPainel')->name('painel');
 
 //Rotas Método Post
 Route::post('/agendamento', 'AgendamentoController@novoAgendamento')->name('agendamento');

@@ -88,5 +88,25 @@ class AgendamentoController extends Controller
 
     }
 
+    public function agendamentoCliente(){
+        
+        $name_user = Auth()->user()->name;
+
+        $agendamento = DB::select('SELECT  * FROM events WHERE  title = "'.$name_user.'" AND status in ("agendado","em atendimento")');
+  
+        return view('agendamentocliente', compact('agendamento'));
+
+    }
+
+    public function historicoCliente(){
+        
+        $name_user = Auth()->user()->name;
+
+        $agendamento = DB::select('SELECT  * FROM events WHERE title = "'.$name_user.'" AND status in("cancelado","finalizado")');
+  
+        return view('historicocliente', compact('agendamento'));
+
+    }
+
     
 }

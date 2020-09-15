@@ -238,6 +238,12 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text' => 'Painel',
+            'url'  => '/painel',
+            'icon' => 'fas fa-fw fa-chart-line',
+            'can'  => 'adm',
+        ],
+        [
             'text' => 'Realizar Agendamento',
             'url'  => '/agendamento',
             'icon' => 'fas fa-fw fa-calendar-check',
@@ -245,7 +251,26 @@ return [
         [
             'text' => 'Agendamentos',
             'url'  => 'listagendamento',
+            'icon' => 'fas fa-fw fa-calendar-alt',
+            'can'  => 'adm',
+        ],
+        [
+            'text' => 'Agendamentos',
+            'url'  => 'agendamentocliente',
+            'icon' => 'fas fa-fw fa-calendar-alt',
+            'can'  => 'cliente',
+        ],
+        [
+            'text' => 'Histórico',
+            'url'  => 'historicoadm',
             'icon' => 'fas fa-fw fa-history',
+            'can'  => 'adm',
+        ],
+        [
+            'text' => 'Histórico',
+            'url'  => 'historicocliente',
+            'icon' => 'fas fa-fw fa-history',
+            'can'  => 'cliente',
         ],
      
     ],
@@ -324,12 +349,12 @@ return [
         ],
         [
             'name' => 'Chartjs',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'asset' => true,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js',
                 ],
             ],
         ],
